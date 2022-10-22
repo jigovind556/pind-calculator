@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pind calculator</title>
+</head>
+<body style="align-content: center;">
+	<h1>पिंड कैलक्यूलेटर </h1>
+	<form name="myform" >
+		<label name="length">
+			लंबाई  : <input type="number" name="length" id="length">
+		</label><br>
+		<label name="breadth">
+			चौड़ाई : <input type="number" name="width" id="width">
+		</label><br>
+		<button onclick="calc()" type="button" >सबमिट</button>
+	</form>
+	<div class="result">
+
+	</div>
+	<script>
+		function calc(){
+            var nakshatra;
+			var len = document.forms[0].length.value;
+			var wid = document.forms[0].width.value;
+            var product=len*wid;
+			console.log(product);
+			// document.write(len*wid);
+			var res=document.getElementsByClassName('result')[0];
+			res.innerHTML=product;
+            if((product*9)%8==0){
+                res.innerHTML+="<br> आय "+8;
+            }
+            else{
+                res.innerHTML+="<br> आय "+(product*9)%8;
+            }
+            if((product*9)%7==0){
+                res.innerHTML+="<br> वार  "+7 ;
+            }
+            else{
+                res.innerHTML+="<br> वार  "+(product*9)%7 ;
+            }
+            if((product*6)%9==0){
+                res.innerHTML+="<br> अंश "+9 ;
+            }
+            else{
+                res.innerHTML+="<br> अंश "+(product*6)%9 ;
+            }
+            
+            if((product*8)%12==0){
+                res.innerHTML+="<br> द्रव्य "+12;
+            }
+            else{
+                res.innerHTML+="<br> द्रव्य "+(product*8)%12;
+            }
+            if((product*3)%8==0){
+                res.innerHTML+="<br> ऋण "+8 ;
+            }
+            else{
+                res.innerHTML+="<br> ऋण "+(product*3)%8 ;
+            }
+            if((product*8)%27==0){
+                nakshatra=27
+                res.innerHTML+="<br> नक्षत्र "+27 ;
+            }
+            else{
+                nakshatra=(product*8)%27;
+                res.innerHTML+="<br> नक्षत्र "+(product*8)%27 ;
+            }
+            if((product*8)%15==0){
+                res.innerHTML+="<br> तिथि "+15 ;
+            }
+            else{
+                res.innerHTML+="<br> तिथि "+(product*8)%15 ;
+            }
+            if((product*4)%27==0){
+                res.innerHTML+="<br> योग "+27 ;
+            }
+            else{
+                res.innerHTML+="<br> योग "+(product*4)%27 ;
+            }
+            if((product*8)%120==0){
+                res.innerHTML+="<br> आयु "+120 ;
+            }
+            else{
+                res.innerHTML+="<br> आयु "+(product*8)%120 ;
+            }
+            if((nakshatra)%8==0){
+                res.innerHTML+="<br> व्यय "+8 ;
+            }
+            else{
+                res.innerHTML+="<br> व्यय "+(nakshatra)%8 ;
+            }
+
+            var sum=len*wid;
+            var data;
+            if((sum*8)%9==0){
+                data =9;
+                res.innerHTML+="<br> दाता "+9 ;
+            }
+            else{
+                data=(sum*8)%9;
+                res.innerHTML+="<br> दाता "+(sum*8)%9 ;
+            }
+            switch (data) {
+                case 1:
+                    res.innerHTML+=" चोर ❌";
+                    break;
+                case 2:
+                    res.innerHTML+=" भोगी ✔ ";
+                    break;
+                case 3 :
+                    res.innerHTML+=" विचक्षण ✔ ";
+                    break;
+                case 4 :
+                    res.innerHTML+=" दाता ✔ ";
+                    break;
+                case 5 :
+                    res.innerHTML+=" नृपति ✔ ";
+                    break;
+                case 6 :
+                    res.innerHTML+=" नपुंसक ❌ ";
+                    break;
+                case 7 :
+                    res.innerHTML+=" धनाढ्य ✔ ";
+                    break;
+                case 8 :
+                    res.innerHTML+=" दरिद्र ❌ ";
+                    break;
+                case 9 :
+                    res.innerHTML+=" भयदाता ❌ ";
+                    break;
+                default:
+                    break;
+            }
+            
+            
+            
+            
+            
+		}
+	</script>
+</body>
+
+</html>
