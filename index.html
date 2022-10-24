@@ -6,25 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pind calculator</title>
 </head>
-<body style="align-content: center;">
-	<h1>पिंड कैलक्यूलेटर </h1>
+<body style="align-content: center;" onload="formMaker()">
+	<h1>पिंड कैलक्यूलेटर</h1>
 	<form name="myform" >
-		<label name="length">
-			लंबाई  : <input type="number" name="length" id="length">
-		</label><br>
-		<label name="breadth">
-			चौड़ाई : <input type="number" name="width" id="width">
-		</label><br>
-		<button onclick="calc()" type="button" >सबमिट</button>
+        
+        <label for="unit">
+            unit : <select name="units" id="units" onchange="formMaker()">
+                        <option value="feet">feet</option>
+                        <option value="hath">hath</option>
+                    </select><br>
+        </label>
+        <div id="forms"> 
+            <!-- <label for="length">
+                length : <input type="number" value="0" name="length" id="length">
+            </label><br>
+            <label for="breadth">
+                breadth : <input type="number" name="width" id="width">
+            </label><br> -->
+        </div>
+		<button onclick="calc()" type="button" >submit</button>
 	</form>
 	<div class="result">
 
 	</div>
 	<script>
+        // window.onload(formMaker());
+        function formMaker(){
+            var opt=document.forms[0].units.value;
+            var formEle=document.getElementById("forms");
+            switch (opt) {
+                case 'feet':
+                    formEle.innerHTML=`
+                        <label for="length">
+                            length : <input type="number" name="length" value="0" default='0' title="फुट" id="length" placeholder="फुट">
+                            <input type="number"  name="length2" value="0" id="length2" default='0' title="इंच" placeholder="इंच">
+                        </label><br>
+                        <label for="breadth">
+                            breadth : <input type="number" value="0" name="width" id="width" title="फुट" placeholder="फुट">
+                            <input type="number"  name="width2" value="0" id="width2" title="इंच" placeholder="इंच">
+                        </label><br>`;
+                    break;
+                case 'hath':
+                    formEle.innerHTML=`
+                        <label for="length">
+                            length : <input type="number" value="0" name="length" title="हाथ" id="length" placeholder="हाथ">
+                                    <input type="number"  value="0" name="length2" title="अंगुल" id="length2" placeholder="अंगुल">
+                        </label><br>
+                        <label for="breadth">
+                            breadth : <input type="number" value="0" name="width" title="हाथ" id="width" placeholder="हाथ">
+                            <input type="number"  name="width2" value="0" id="width2" title="अंगुल" placeholder="अंगुल">
+                        </label><br>`;
+                    break;
+            
+                default:
+                    break;
+            }
+        }
 		function calc(){
+            var opt=document.forms[0].units.value;
+            var len;
+            var wid;
+            switch (opt) {
+                case 'feet':
+                    len1=parseInt(document.forms[0].length.value);
+                    len2=parseInt(document.forms[0].length2.value);
+                    wid1=parseInt(document.forms[0].width.value);
+                    wid2=parseInt(document.forms[0].width2.value);
+
+                    len=(len1*12+len2)/18;
+                    wid=(wid1*12+wid2)/18;
+                    break;
+                case 'hath':
+                    len1=parseInt(document.forms[0].length.value);
+                    len2=parseInt(document.forms[0].length2.value);
+                    wid1=parseInt(document.forms[0].width.value);
+                    wid2=parseInt(document.forms[0].width2.value);
+
+                    len=(len1+len2/24);
+                    wid=(wid1+wid2/24);
+                    break;
+            
+                default:
+                    break;
+            }
+
+            if(opt=='feet'){
+                
+            }
+			// var len = document.forms[0].length.value;
+			// var wid = document.forms[0].width.value;
             var nakshatra;
-			var len = document.forms[0].length.value;
-			var wid = document.forms[0].width.value;
             var product=len*wid;
 			console.log(product);
 			// document.write(len*wid);
@@ -62,8 +133,8 @@
                 res.innerHTML+="<br> ऋण "+(product*3)%8 ;
             }
             if((product*8)%27==0){
-                nakshatra=27
-                res.innerHTML+="<br> नक्षत्र "+27 ;
+                nakshatra=27;
+                res.innerHTML+="<br> नक्षत्र "+8 ;
             }
             else{
                 nakshatra=(product*8)%27;
@@ -135,10 +206,6 @@
                 default:
                     break;
             }
-            
-            
-            
-            
             
 		}
 	</script>
