@@ -5,15 +5,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pind calculator</title>
+    <style>
+        *{
+            font-size: 10dp;
+        }
+        body{
+            /* background-image: url("virat_kohli.jpg"); */
+            background-color: #E3E2DF;
+            color: #2f2fa2;
+            text-align: center;
+            font-weight: bolder;
+        }
+        h1,h3{
+            color:#f13c20;
+        }
+        img{
+            width:100%;
+        }
+        /* input{
+            width: 50px;
+            background-color: #f1f1f1;
+            /* border: 3px solid grey; */
+            /* border: none; */
+     /*    } */
+        input {
+            background-color: #1984c3;
+            color: #fff;
+            padding: .5em 2.5em;
+            margin :3px;
+            width: 40px;
+            border-radius: 0.3em;
+            border:none;
+            outline:none;
+            transition: all 0.1s ease-out;
+            position: relative;
+            }
+
+            input:focus {
+            box-shadow: 0 2px 3px #ccc;
+            border-bottom: 0.25em solid #0f5177;
+            top:-2px;
+            }
+        select {
+            /* width: 100%; */
+            background-color: #1984c3;
+            color: #fff;
+            padding: 1px 2px;
+            border: none;
+            border-radius: 4px;
+            /* background-color: #f1f1f1; */
+            }
+        button{
+            background-color: #007cc7;
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        
+    </style>
 </head>
 <body style="align-content: center;" onload="formMaker()">
-	<h1>पिंड कैलक्यूलेटर</h1>
+	<h1>डॉ रंजीत पिंड कैलक्यूलेटर</h1>
 	<form name="myform" >
         
         <label for="unit">
-            unit : <select name="units" id="units" onchange="formMaker()">
-                        <option value="feet">feet</option>
-                        <option value="hath">hath</option>
+            मात्रक : <select name="units" id="units" onchange="formMaker()">
+                        <option value="feet">फुट </option>
+                        <option value="hath">हाथ </option>
                     </select><br>
         </label>
         <div id="forms"> 
@@ -27,7 +88,7 @@
 		<button onclick="calc()" type="button" >submit</button>
 	</form>
 	<div class="result">
-
+        <hr>
 	</div>
 	<script>
         // window.onload(formMaker());
@@ -38,22 +99,22 @@
                 case 'feet':
                     formEle.innerHTML=`
                         <label for="length">
-                            length : <input type="number" name="length" value="0" default='0' title="फुट" id="length" placeholder="फुट">
+                            लंबाई  : <input type="number" name="length" value="0" default='0' title="फुट" id="length" placeholder="फुट">
                             <input type="number"  name="length2" value="0" id="length2" default='0' title="इंच" placeholder="इंच">
                         </label><br>
                         <label for="breadth">
-                            breadth : <input type="number" value="0" name="width" id="width" title="फुट" placeholder="फुट">
+                            चौड़ाई : <input type="number" value="0" name="width" id="width" title="फुट" placeholder="फुट">
                             <input type="number"  name="width2" value="0" id="width2" title="इंच" placeholder="इंच">
                         </label><br>`;
                     break;
                 case 'hath':
                     formEle.innerHTML=`
                         <label for="length">
-                            length : <input type="number" value="0" name="length" title="हाथ" id="length" placeholder="हाथ">
+                            लंबाई  : <input type="number" value="0" name="length" title="हाथ" id="length" placeholder="हाथ">
                                     <input type="number"  value="0" name="length2" title="अंगुल" id="length2" placeholder="अंगुल">
                         </label><br>
                         <label for="breadth">
-                            breadth : <input type="number" value="0" name="width" title="हाथ" id="width" placeholder="हाथ">
+                            चौड़ाई : <input type="number" value="0" name="width" title="हाथ" id="width" placeholder="हाथ">
                             <input type="number"  name="width2" value="0" id="width2" title="अंगुल" placeholder="अंगुल">
                         </label><br>`;
                     break;
@@ -100,80 +161,81 @@
 			console.log(product);
 			// document.write(len*wid);
 			var res=document.getElementsByClassName('result')[0];
-			res.innerHTML=product;
+			res.innerHTML+="पिंड : "+product;
+			res.innerHTML+="<h3>भवन विचार</h3>";
             if((product*9)%8==0){
-                res.innerHTML+="<br> आय "+8;
+                res.innerHTML+="<br> आय :- "+8;
             }
             else{
-                res.innerHTML+="<br> आय "+(product*9)%8;
+                res.innerHTML+="<br> आय :- "+(product*9)%8;
             }
             if((product*9)%7==0){
-                res.innerHTML+="<br> वार  "+7 ;
+                res.innerHTML+="<br> वार :- "+7 ;
             }
             else{
-                res.innerHTML+="<br> वार  "+(product*9)%7 ;
+                res.innerHTML+="<br> वार :- "+(product*9)%7 ;
             }
             if((product*6)%9==0){
-                res.innerHTML+="<br> अंश "+9 ;
+                res.innerHTML+="<br> अंश :- "+9 ;
             }
             else{
-                res.innerHTML+="<br> अंश "+(product*6)%9 ;
+                res.innerHTML+="<br> अंश :- "+(product*6)%9 ;
             }
             
             if((product*8)%12==0){
-                res.innerHTML+="<br> द्रव्य "+12;
+                res.innerHTML+="<br> द्रव्य :- "+12;
             }
             else{
-                res.innerHTML+="<br> द्रव्य "+(product*8)%12;
+                res.innerHTML+="<br> द्रव्य :- "+(product*8)%12;
             }
             if((product*3)%8==0){
-                res.innerHTML+="<br> ऋण "+8 ;
+                res.innerHTML+="<br> ऋण :- "+8 ;
             }
             else{
-                res.innerHTML+="<br> ऋण "+(product*3)%8 ;
+                res.innerHTML+="<br> ऋण :- "+(product*3)%8 ;
             }
             if((product*8)%27==0){
                 nakshatra=27;
-                res.innerHTML+="<br> नक्षत्र "+8 ;
+                res.innerHTML+="<br> नक्षत्र :- "+8 ;
             }
             else{
                 nakshatra=(product*8)%27;
-                res.innerHTML+="<br> नक्षत्र "+(product*8)%27 ;
+                res.innerHTML+="<br> नक्षत्र :- "+(product*8)%27 ;
             }
             if((product*8)%15==0){
-                res.innerHTML+="<br> तिथि "+15 ;
+                res.innerHTML+="<br> तिथि :- "+15 ;
             }
             else{
-                res.innerHTML+="<br> तिथि "+(product*8)%15 ;
+                res.innerHTML+="<br> तिथि :- "+(product*8)%15 ;
             }
             if((product*4)%27==0){
-                res.innerHTML+="<br> योग "+27 ;
+                res.innerHTML+="<br> योग :- "+27 ;
             }
             else{
-                res.innerHTML+="<br> योग "+(product*4)%27 ;
+                res.innerHTML+="<br> योग :- "+(product*4)%27 ;
             }
             if((product*8)%120==0){
-                res.innerHTML+="<br> आयु "+120 ;
+                res.innerHTML+="<br> आयु :- "+120 ;
             }
             else{
-                res.innerHTML+="<br> आयु "+(product*8)%120 ;
+                res.innerHTML+="<br> आयु :- "+(product*8)%120 ;
             }
             if((nakshatra)%8==0){
-                res.innerHTML+="<br> व्यय "+8 ;
+                res.innerHTML+="<br> व्यय :- "+8 ;
             }
             else{
-                res.innerHTML+="<br> व्यय "+(nakshatra)%8 ;
+                res.innerHTML+="<br> व्यय :- "+(nakshatra)%8 ;
             }
 
             var sum=len*wid;
             var data;
             if((sum*8)%9==0){
                 data =9;
-                res.innerHTML+="<br> दाता "+9 ;
+                res.innerHTML+="<br> दाता :- "+9 ;
             }
             else{
-                data=(sum*8)%9;
-                res.innerHTML+="<br> दाता "+(sum*8)%9 ;
+                data=parseInt((sum*8)%9);
+                res.innerHTML+="<br> दाता :- "+(sum*8)%9 ;
             }
             switch (data) {
                 case 1:
@@ -203,6 +265,73 @@
                 case 9 :
                     res.innerHTML+=" भयदाता ❌ ";
                     break;
+                default:
+                    break;
+            }
+            
+            res.innerHTML+="<hr><h3>गोशाला विचार</h3>"
+            var goshala=parseInt(sum%8);
+            switch (goshala) {
+                case 1:
+                    res.innerHTML+=" पशु हानी ❌";
+                    break;
+                case 2:
+                    res.innerHTML+=" पशु रोग ❌ ";
+                    break;
+                case 3 :
+                    res.innerHTML+=" पशु लाभ ✔ ";
+                    break;
+                case 4 :
+                    res.innerHTML+=" पशु क्षय ❌ ";
+                    break;
+                case 5 :
+                    res.innerHTML+=" पशु नाश ❌ ";
+                    break;
+                case 6 :
+                    res.innerHTML+=" पशु वृद्धि  ✔ ";
+                    break;
+                case 7 :
+                    res.innerHTML+=" पशु भेद ❌ ";
+                    break;
+                case 0 :
+                    res.innerHTML+=" पशु वृद्धि ✔ ";
+                    break;
+                
+                default:
+                    break;
+            }
+            
+            res.innerHTML+="<hr><h3>आँगन विचार</h3>"
+            var aangan =parseInt((sum*8)%9);
+            switch (aangan) {
+                case 1:
+                    res.innerHTML+=" चोर ❌";
+                    break;
+                case 2:
+                    res.innerHTML+=" भोगी ✔ ";
+                    break;
+                case 3 :
+                    res.innerHTML+=" चतुर ✔ ";
+                    break;
+                case 4 :
+                    res.innerHTML+=" दाता ✔ ";
+                    break;
+                case 5 :
+                    res.innerHTML+=" नरपति ✔ ";
+                    break;
+                case 6 :
+                    res.innerHTML+=" नपुंसक ❌ ";
+                    break;
+                case 7 :
+                    res.innerHTML+=" धनाढ्य ✔ ";
+                    break;
+                case 8 :
+                    res.innerHTML+=" दरिद्र ❌ ";
+                    break;
+                case 0 :
+                    res.innerHTML+=" भाय दाता ❌ ";
+                    break;
+                
                 default:
                     break;
             }
